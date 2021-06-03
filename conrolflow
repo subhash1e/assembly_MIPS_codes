@@ -1,0 +1,40 @@
+#control flow
+#  
+#if(i==j) print 2*i else print unequal integers
+#
+
+.data 		#stores in data segment (in next available memory)
+
+msg : .asciiz "Unequal numbers"
+
+
+
+
+.text 		#stores codes in text segment
+main:
+addi $t1, $t0,-8
+addi $t2,$t0,-8
+
+beq  $t1,$t2,label           #if t1==t2 branch to label
+bne  $t1,$t2,label2
+
+label:
+	add $t1, $t1,$t1      # t1 = 2*t1
+	
+	li $v0, 1           #print an integer command
+	move $a0, $t1       # move value to be printed to $a0
+	syscall
+
+
+	li $v0, 10 # program end command
+	syscall
+	
+
+
+label2:
+	li $v0, 4 #print string command
+	la $a0, msg # loading address of string msg for prnting it
+	syscall #print msg
+	
+	li $v0, 10 # program end command
+	syscall
