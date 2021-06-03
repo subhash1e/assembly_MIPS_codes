@@ -3,14 +3,11 @@
 #if(i==j) print 2*i else print unequal integers
 #
 
-.data 		#stores in data segment (in next available memory)
-
+.data 					#store items in data segment (in next available memory)
 msg : .asciiz "Unequal numbers"
 
 
-
-
-.text 		#stores codes in text segment
+.text 						#stores codes in text segment
 main:
 addi $t1, $t0,-8
 addi $t2,$t0,-8
@@ -25,11 +22,8 @@ label:
 	move $a0, $t1       # move value to be printed to $a0
 	syscall
 
-
 	li $v0, 10 # program end command
 	syscall
-	
-
 
 label2:
 	li $v0, 4 #print string command
